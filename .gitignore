@@ -1,0 +1,11 @@
+# Eclipse
+.settings/
+.buildpath
+.project
+
+# PHPUnit
+logs/
+phpunit.xml
+
+# Composer
+composer.phar
