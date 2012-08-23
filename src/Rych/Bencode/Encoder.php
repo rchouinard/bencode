@@ -2,8 +2,6 @@
 
 namespace Rych\Bencode;
 
-use Rych\Bencode;
-
 class Encoder
 {
 

@@ -3,7 +3,10 @@
 namespace Rych\Bencode;
 
 use Rych\Bencode;
-use rych\Bencode\Exception\RuntimeException;
+use Rych\Bencode\Exception\RuntimeException;
+
+require_once 'Rych/Bencode.php';
+require_once 'Rych/Bencode/Exception/RuntimeException.php';
 
 class Decoder
 {
