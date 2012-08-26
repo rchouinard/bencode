@@ -32,7 +32,7 @@ require 'Rych/Bencode.php';
 
 $data = array (
     'string' => 'bar',
-    'interger' => 42,
+    'integer' => 42,
     'array' => array (
         'one',
         'two',
@@ -43,7 +43,7 @@ $data = array (
 echo Bencode::encode($data);
 ```
 
-The above outputs the bencoded string `d5:arrayl3:one3:two5:threee8:intergeri42e6:string3:bare`.
+The above outputs the bencoded string `d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare`.
 
 ### Decoding a string
 
@@ -53,7 +53,7 @@ The above outputs the bencoded string `d5:arrayl3:one3:two5:threee8:intergeri42e
 use Rych\Bencode;
 require 'Rych/Bencode.php';
 
-$string = 'd5:arrayl3:one3:two5:threee8:intergeri42e6:string3:bare';
+$string = 'd5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare';
 
 print_r(Bencode::decode($string);
 ```
@@ -69,7 +69,7 @@ Array
             [2] => three
         )
 
-    [interger] => 42
+    [integer] => 42
     [string] => bar
 )
 ```
