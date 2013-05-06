@@ -73,3 +73,25 @@ Array
     [string] => bar
 )
 ```
+
+Installation via [Composer](http://getcomposer.org/)
+------------
+
+ * Install Composer to your project root:
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    ```
+
+ * Add a `composer.json` file to your project:
+    ```json
+    {
+      "require" {
+        "rych/bencode": "1.0.*@dev"
+      }
+    }
+    ```
+
+ * Run the Composer installer:
+    ```bash
+    php composer.phar install
+    ```
