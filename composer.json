@@ -23,5 +23,10 @@
             "Rych\\Bencode": ""
         }
     },
-    "target-dir": "Rych/Bencode"
+    "target-dir": "Rych/Bencode",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
 }
