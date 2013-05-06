@@ -10,7 +10,6 @@
 
 namespace Rych\Bencode;
 
-use Rych\Bencode;
 use Rych\Bencode\Exception\RuntimeException;
 
 /**

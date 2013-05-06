@@ -1,9 +1,8 @@
 <?php
 
-namespace Rych\Test\Bencode;
+namespace Rych\Bencode\Tests;
 
 use Rych\Bencode\Decoder;
-use Rych\Bencode\Exception\RuntimeException;
 
 class DecoderTest extends \PHPUnit_Framework_TestCase
 {

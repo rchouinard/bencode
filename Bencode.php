@@ -8,10 +8,7 @@
  * @license MIT License - http://www.opensource.org/licenses/mit-license.php
  */
 
-namespace Rych;
-
-use Rych\Bencode\Decoder;
-use Rych\Bencode\Encoder;
+namespace Rych\Bencode;
 
 /**
  * Rych Bencode Component

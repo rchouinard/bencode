@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true" verbose="true" bootstrap="./tests/bootstrap.php">
-    <php>
-        <includePath>./src</includePath>
-    </php>
+<phpunit colors="true" bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="Bencode Tests">
-            <directory suffix="Test.php" phpVersion="5.3.0" phpVersionOperator=">=">./tests</directory>
+        <testsuite name="Rych Bencode Test Suite">
+            <directory suffix="Test.php" phpVersion="5.3.4" phpVersionOperator=">=">./Tests/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory>./src/</directory>
+            <exclude>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
 </phpunit>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rych\Test\Bencode;
+namespace Rych\Bencode\Tests;
 
 use Rych\Bencode\Encoder;
 
