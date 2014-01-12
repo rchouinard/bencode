@@ -71,7 +71,7 @@ class Encoder
             return $this->_encodeList($data);
         } else if (is_array($data)) {
             return $this->_encodeDict($data);
-        } else if (is_numeric($data)) {
+        } else if (is_integer($data) || is_float($data)) {
             $data = sprintf('%.0f', round($data, 0));
             return $this->_encodeInteger($data);
         } else {
