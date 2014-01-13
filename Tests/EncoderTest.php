@@ -59,4 +59,23 @@ class EncoderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test regrassion of issue #1
+     *
+     * Encoder should treat numeric strings as strings rather than
+     * integers.
+     */
+    public function testIssue1Regrassion()
+    {
+        $data = array (
+            "Numeric string value" => "1",
+            "1" => "Numeric string key",
+        );
+
+        $this->assertEquals(
+            "d20:Numeric string value1:11:118:Numeric string keye",
+            Encoder::encode($data)
+        );
+    }
+
 }
