@@ -86,7 +86,7 @@ Installation via [Composer](http://getcomposer.org/)
     ```json
     {
       "require" {
-        "rych/bencode": "1.0.*@dev"
+        "rych/bencode": "1.0.*"
       }
     }
     ```
