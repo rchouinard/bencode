@@ -1,8 +1,6 @@
 <?php
 
-namespace Rych\Bencode\Tests;
-
-use Rych\Bencode\Decoder;
+namespace Rych\Bencode;
 
 class DecoderTest extends \PHPUnit_Framework_TestCase
 {
