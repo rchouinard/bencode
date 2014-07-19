@@ -27,35 +27,33 @@ How does it work?
 ```php
 <?php
 
-use Rych\Bencode;
-require 'Rych/Bencode.php';
+use Rych\Bencode\Bencode;
 
-$data = array (
-    'string' => 'bar',
-    'integer' => 42,
-    'array' => array (
-        'one',
-        'two',
-        'three',
+$data = array(
+    "string" => "bar",
+    "integer" => 42,
+    "array" => array(
+        "one",
+        "two",
+        "three",
     ),
 );
 
 echo Bencode::encode($data);
 ```
 
-The above outputs the bencoded string `d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare`.
+The above outputs the bencode encoded string `d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare`.
 
 ### Decoding a string
 
 ```php
 <?php
 
-use Rych\Bencode;
-require 'Rych/Bencode.php';
+use Rych\Bencode\Bencode;
 
-$string = 'd5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare';
+$string = "d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare";
 
-print_r(Bencode::decode($string);
+print_r(Bencode::decode($string));
 ```
 
 The above results the the following output:

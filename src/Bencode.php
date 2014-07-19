@@ -1,36 +1,36 @@
 <?php
 /**
- * Rych Bencode Component
+ * Rych Bencode
  *
- * @package Rych\Bencode
- * @author Ryan Chouinard <rchouinard@gmail.com>
+ * Bencode serializer for PHP 5.3+.
+ *
+ * @package   Rych\Bencode
  * @copyright Copyright (c) 2014, Ryan Chouinard
- * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+ * @author    Ryan Chouinard <rchouinard@gmail.com>
+ * @license   MIT License - http://www.opensource.org/licenses/mit-license.php
  */
 
 namespace Rych\Bencode;
 
 /**
- * Rych Bencode Component
+ * Bencode class
  *
- * @package Rych\Bencode
- * @author Ryan Chouinard <rchouinard@gmail.com>
- * @copyright Copyright (c) 2014, Ryan Chouinard
- * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+ * Provides static convenience methods for encoding and decoding bencode
+ * encoded strings.
  */
 class Bencode
 {
 
-    const TYPE_ARRAY = 'array';
-    const TYPE_OBJECT = 'object'; // NOT IMPLEMENTED
+    const TYPE_ARRAY = "array";
+    const TYPE_OBJECT = "object"; // NOT IMPLEMENTED
 
     /**
-     * Decodes a bencoded string
+     * Decode a bencode encoded string
      *
-     * @param string $string The bencoded string to decode.
-     * @param string $decodeType Flag used to indicate whether the decoded
-     *     value should be returned as an object or an array.
-     * @return mixed Returns the appropriate data type for the bencoded data.
+     * @param  string  $string The string to decode.
+     * @param  string  $decodeType Flag used to indicate whether the decoded
+     *   value should be returned as an object or an array.
+     * @return mixed   Returns the appropriate data type for the decoded data.
      */
     public static function decode($string, $decodeType = self::TYPE_ARRAY)
     {
@@ -38,10 +38,10 @@ class Bencode
     }
 
     /**
-     * Encodes a value into a bencoded string
+     * Encode a value into a bencode encoded string
      *
-     * @param mixed $value The value to bencode.
-     * @return string Returns a bencoded string.
+     * @param  mixed   $value The value to encode.
+     * @return string  Returns a bencode encoded string.
      */
     public static function encode($value)
     {

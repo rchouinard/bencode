@@ -1,35 +1,36 @@
 <?php
 /**
- * Rych Bencode Component
+ * Rych Bencode
  *
- * @package Rych\Bencode
- * @author Ryan Chouinard <rchouinard@gmail.com>
+ * Bencode serializer for PHP 5.3+.
+ *
+ * @package   Rych\Bencode
  * @copyright Copyright (c) 2014, Ryan Chouinard
- * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+ * @author    Ryan Chouinard <rchouinard@gmail.com>
+ * @license   MIT License - http://www.opensource.org/licenses/mit-license.php
  */
 
 namespace Rych\Bencode;
 
 /**
- * Bencode encoder
+ * Bencode encoder class
  *
- * @package Rych\Bencode
- * @author Ryan Chouinard <rchouinard@gmail.com>
- * @copyright Copyright (c) 2014, Ryan Chouinard
- * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+ * Encode values into bencode encoded strings.
  */
 class Encoder
 {
 
     /**
-     * @var mixed Entity to be encoded.
+     * Value to encode
+     *
+     * @var mixed
      */
     private $data;
 
     /**
-     * Class constructor
+     * Encoder constructor
      *
-     * @param mixed $data Entity to be encoded.
+     * @param  mixed   $data The value to encode.
      * @return void
      */
     private function __construct($data)
@@ -38,15 +39,15 @@ class Encoder
     }
 
     /**
-     * Encode a value into a bencode entity
+     * Encode a value into a bencode encoded string
      *
-     * @param mixed $data The value to be encoded.
-     * @return string Returns the bencoded entity.
+     * @param  mixed   $data The value to encode.
+     * @return string  Returns the bencode encoded string.
      */
     public static function encode($data)
     {
         if (is_object($data)) {
-            if (method_exists($data, 'toArray')) {
+            if (method_exists($data, "toArray")) {
                 $data = $data->toArray();
             } else {
                 $data = (array) $data;
@@ -54,14 +55,16 @@ class Encoder
         }
 
         $encoder = new self($data);
-        return $encoder->doEncode();
+        $encoded = $encoder->doEncode();
+
+        return $encoded;
     }
 
     /**
-     * Encode a value into a bencode entity
+     * Iterate over values and encode them
      *
-     * @param mixed $data The value to be encoded.
-     * @return string Returns the bencoded entity.
+     * @param  mixed   $data The value to encode.
+     * @return string  Returns the bencode encoded string.
      */
     private function doEncode($data = null)
     {
@@ -72,7 +75,7 @@ class Encoder
         } elseif (is_array($data)) {
             return $this->encodeDict($data);
         } elseif (is_integer($data) || is_float($data)) {
-            $data = sprintf('%.0f', round($data, 0));
+            $data = sprintf("%.0f", round($data, 0));
             return $this->encodeInteger($data);
         } else {
             return $this->encodeString($data);
@@ -80,40 +83,40 @@ class Encoder
     }
 
     /**
-     * Encode an integer into a bencode integer
+     * Encode an integer
      *
-     * @param integer $data The integer to be encoded.
-     * @return string Returns the bencoded integer.
+     * @param  integer $data The integer to be encoded.
+     * @return string  Returns the bencode encoded integer.
      */
     private function encodeInteger($data = null)
     {
         $data = is_null($data) ? $this->data : $data;
-        return sprintf('i%.0fe', $data);
+        return sprintf("i%.0fe", $data);
     }
 
     /**
-     * Encode a string into a bencode string
+     * Encode a string
      *
-     * @param string $data The string to be encoded.
-     * @return string Returns the bencoded string.
+     * @param  string  $data The string to be encoded.
+     * @return string  Returns the bencode encoded string.
      */
     private function encodeString($data = null)
     {
         $data = is_null($data) ? $this->data : $data;
-        return sprintf('%d:%s', strlen($data), $data);
+        return sprintf("%d:%s", strlen($data), $data);
     }
 
     /**
-     * Encode a numeric array into a bencode list
+     * Encode a list
      *
-     * @param array $data The numerically indexed array to be encoded.
-     * @return string Returns the bencoded list.
+     * @param  array   $data The list to be encoded.
+     * @return string  Returns the bencode encoded list.
      */
     private function encodeList(array $data = null)
     {
         $data = is_null($data) ? $this->data : $data;
 
-        $list = '';
+        $list = "";
         foreach ($data as $value) {
             $list .= $this->doEncode($value);
         }
@@ -122,17 +125,17 @@ class Encoder
     }
 
     /**
-     * Encode an associative array into a bencode dictionary
+     * Encode a dictionary
      *
-     * @param array $data The associative array to be encoded.
-     * @return string Returns the bencoded dictionary.
+     * @param  array   $data The dictionary to be encoded.
+     * @return string  Returns the bencode encoded dictionary.
      */
     private function encodeDict(array $data = null)
     {
         $data = is_null($data) ? $this->data : $data;
         ksort($data); // bencode spec requires dicts to be sorted alphabetically
 
-        $dict = '';
+        $dict = "";
         foreach ($data as $key => $value) {
             $dict .= $this->encodeString($key) . $this->doEncode($value);
         }
