@@ -1,26 +1,26 @@
-What is this?
-=============
+# Bencode serialization for PHP
 
-This project allows developers to encode or decode bencoded data strings in
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
+
+This library allows developers to encode or decode bencoded data strings in
 PHP 5.3+. More information about bencode can be found at [Wikipedia](http://en.wikipedia.org/wiki/Bencode).
 The format is primarily used in the .torrent file specification.
 
-Build status
-------------
 
-[![Build Status](https://secure.travis-ci.org/rchouinard/bencode.png?branch=master)](http://travis-ci.org/rchouinard/bencode)
+## Install
 
-Why?
-----
+Via Composer
 
-At one time I was involved in building a torrent tracker/index, and I wrote this
-library to read and manipulate uploaded torrent files. I originally bundled it
-in my [rchouinard/rych-components](https://github.com/rchouinard/rych-components)
-project, but I've recently decided to break that package up into standalone
-components.
+``` bash
+$ composer require rych/bencode
+```
 
-How does it work?
------------------
+
+## Usage
 
 ### Encoding an array
 
@@ -42,7 +42,7 @@ $data = array(
 echo Bencode::encode($data);
 ```
 
-The above outputs the bencode encoded string `d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare`.
+The above produces the string `d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare`.
 
 ### Decoding a string
 
@@ -56,7 +56,7 @@ $string = "d5:arrayl3:one3:two5:threee7:integeri42e6:string3:bare";
 print_r(Bencode::decode($string));
 ```
 
-The above results the the following output:
+The above produces the the following output:
 ```
 Array
 (
@@ -72,24 +72,31 @@ Array
 )
 ```
 
-Installation via [Composer](http://getcomposer.org/)
-------------
 
- * Install Composer to your project root:
-    ```bash
-    curl -sS https://getcomposer.org/installer | php
-    ```
+## Testing
 
- * Add a `composer.json` file to your project:
-    ```json
-    {
-      "require" {
-        "rych/bencode": "1.0.*"
-      }
-    }
-    ```
+``` bash
+$ vendor/bin/phpunit -c phpunit.dist.xml
+```
 
- * Run the Composer installer:
-    ```bash
-    php composer.phar install
-    ```
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
+[ico-version]: https://img.shields.io/packagist/v/rych/bencode.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/rchouinard/bencode.svg?style=flat-square
+[ico-coveralls]: https://img.shields.io/coveralls/rchouinard/bencode.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/sensiolabs/i/c444c99a-2870-459b-9268-13c96166e8f7.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/rych/bencode.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/rych/bencode
+[link-travis]: https://travis-ci.org/rchouinard/bencode
+[link-coveralls]: https://coveralls.io/r/rchouinard/bencode
+[link-code-quality]: https://insight.sensiolabs.com/projects/c444c99a-2870-459b-9268-13c96166e8f7
+[link-downloads]: https://packagist.org/packages/rych/bencode
+[link-author]: https://github.com/rchouinard
+[link-contributors]: https://github.com/rchouinard/bencode/graphs/contributors
+
