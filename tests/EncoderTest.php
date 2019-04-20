@@ -12,7 +12,7 @@
 
 namespace Rych\Bencode;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 /**
  * Bencode encoder test

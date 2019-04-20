@@ -1,7 +1,7 @@
 {
     "name": "rych/bencode",
     "type": "library",
-    "description": "Bencode serializer for PHP 5.3+",
+    "description": "Bencode serializer for PHP",
     "keywords": ["bencode", "serialize"],
     "homepage": "https://github.com/rchouinard/bencode",
     "license": "MIT",
@@ -13,14 +13,18 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": "~7.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.7"
+        "phpunit/phpunit": ">=7.0",
+        "squizlabs/php_codesniffer": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "Rych\\Bencode\\": "src/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }

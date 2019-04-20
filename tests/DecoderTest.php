@@ -12,7 +12,7 @@
 
 namespace Rych\Bencode;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use Rych\Bencode\Exception\RuntimeException;
 
 /**
@@ -35,10 +35,10 @@ class DecoderTest extends TestCase
      * Test that an unterminated string triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testUnterminatedStringThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("6:stri");
     }
 
@@ -46,10 +46,10 @@ class DecoderTest extends TestCase
      * Test that a zero-padded string length triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testZeroPaddedLengthInStringThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("03:foo");
     }
 
@@ -57,10 +57,10 @@ class DecoderTest extends TestCase
      * Test that a missing colon triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testMissingColonInStringThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("3foo");
     }
 
@@ -80,10 +80,10 @@ class DecoderTest extends TestCase
      * Test that an empty integer triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testEmptyIntegerThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("ie");
     }
 
@@ -91,10 +91,10 @@ class DecoderTest extends TestCase
      * Test that a non-digit in an integer trigger an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testNonDigitCharInIntegerThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("iae");
     }
 
@@ -102,10 +102,10 @@ class DecoderTest extends TestCase
      * Test that a zero-padded integer triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testLeadingZeroInIntegerThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("i042e");
     }
 
@@ -113,10 +113,10 @@ class DecoderTest extends TestCase
      * Test that an unterminated integer triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testUnterminatedIntegerThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("i42");
     }
 
@@ -134,10 +134,10 @@ class DecoderTest extends TestCase
      * Test that an unterminated lists triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testUnterminatedListThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("l3:foo3:bar");
     }
 
@@ -155,10 +155,10 @@ class DecoderTest extends TestCase
      * Test that an unterminated dictionary triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testUnterminatedDictThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("d3:foo3:bar");
     }
 
@@ -166,10 +166,10 @@ class DecoderTest extends TestCase
      * Test that a duplicate dictionary key triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testDuplicateDictionaryKeyThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("d3:foo3:bar3:foo3:bare");
     }
 
@@ -177,10 +177,10 @@ class DecoderTest extends TestCase
      * Test that a non-string dictionary key triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testNonStringDictKeyThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("di42e3:bare");
     }
 
@@ -188,10 +188,10 @@ class DecoderTest extends TestCase
      * Test that an unknown entity triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testUnknownEntityThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("a3:fooe");
     }
 
@@ -199,10 +199,10 @@ class DecoderTest extends TestCase
      * Test that attempting to decode a non-string triggers an exception
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testDecodeNonStringThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode(array());
     }
 
@@ -210,10 +210,10 @@ class DecoderTest extends TestCase
      * Test that multiple entities must be in a list or dictionary
      *
      * @test
-     * @expectedException RuntimeException
      */
     public function testDecodeMultipleTypesOutsideOfListOrDictShouldThrowException()
     {
+        $this->expectException(RuntimeException::class);
         Decoder::decode("3:foo3:bar");
     }
 

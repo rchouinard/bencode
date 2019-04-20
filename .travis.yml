@@ -1,23 +1,21 @@
 language: php
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
   - 7.1
   - 7.2
   - 7.3
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 matrix:
   include:
-    - php: 5.3
-      dist: precise
+    - php: 7.1
+      env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
 
 before_script:
-  - travis_retry composer self-update
-  - composer config notify-on-install false
-  - travis_retry composer update --no-interaction --prefer-source
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
 
 script:
-  - vendor/bin/phpunit --configuration phpunit.xml.dist
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
