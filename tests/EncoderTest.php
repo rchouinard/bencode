@@ -1,14 +1,4 @@
 <?php
-/**
- * Rych Bencode
- *
- * Bencode serializer for PHP 5.3+.
- *
- * @package   Rych\Bencode
- * @copyright Copyright (c) 2014, Ryan Chouinard
- * @author    Ryan Chouinard <rchouinard@gmail.com>
- * @license   MIT License - http://www.opensource.org/licenses/mit-license.php
- */
 
 namespace Rych\Bencode;
 
@@ -19,7 +9,6 @@ use PHPUnit\Framework\TestCase as TestCase;
  */
 class EncoderTest extends TestCase
 {
-
     /**
      * Test that strings are properly encoded
      *
@@ -91,5 +80,4 @@ class EncoderTest extends TestCase
 
         $this->assertEquals("d20:Numeric string value1:11:118:Numeric string keye", Encoder::encode($data));
     }
-
 }

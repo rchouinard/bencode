@@ -1,14 +1,4 @@
 <?php
-/**
- * Rych Bencode
- *
- * Bencode serializer for PHP 5.3+.
- *
- * @package   Rych\Bencode
- * @copyright Copyright (c) 2014, Ryan Chouinard
- * @author    Ryan Chouinard <rchouinard@gmail.com>
- * @license   MIT License - http://www.opensource.org/licenses/mit-license.php
- */
 
 namespace Rych\Bencode;
 
@@ -19,7 +9,6 @@ namespace Rych\Bencode;
  */
 class Encoder
 {
-
     /**
      * Value to encode
      *
@@ -44,7 +33,7 @@ class Encoder
      * @param  mixed   $data The value to encode.
      * @return string  Returns the bencode encoded string.
      */
-    public static function encode($data)
+    public static function encode($data) : string
     {
         if (is_object($data)) {
             if (method_exists($data, "toArray")) {
@@ -66,11 +55,11 @@ class Encoder
      * @param  mixed   $data The value to encode.
      * @return string  Returns the bencode encoded string.
      */
-    private function doEncode($data = null)
+    private function doEncode($data = null) : string
     {
         $data = is_null($data) ? $this->data : $data;
 
-        if (is_array($data) && (isset ($data[0]) || empty ($data))) {
+        if (is_array($data) && (isset($data[0]) || empty($data))) {
             return $this->encodeList($data);
         } elseif (is_array($data)) {
             return $this->encodeDict($data);
@@ -88,7 +77,7 @@ class Encoder
      * @param  integer $data The integer to be encoded.
      * @return string  Returns the bencode encoded integer.
      */
-    private function encodeInteger($data = null)
+    private function encodeInteger(int $data = null) : string
     {
         $data = is_null($data) ? $this->data : $data;
         return sprintf("i%.0fe", $data);
@@ -100,7 +89,7 @@ class Encoder
      * @param  string  $data The string to be encoded.
      * @return string  Returns the bencode encoded string.
      */
-    private function encodeString($data = null)
+    private function encodeString(string $data = null) : string
     {
         $data = is_null($data) ? $this->data : $data;
         return sprintf("%d:%s", strlen($data), $data);
@@ -112,7 +101,7 @@ class Encoder
      * @param  array   $data The list to be encoded.
      * @return string  Returns the bencode encoded list.
      */
-    private function encodeList(array $data = null)
+    private function encodeList(array $data = null) : string
     {
         $data = is_null($data) ? $this->data : $data;
 
@@ -130,7 +119,7 @@ class Encoder
      * @param  array   $data The dictionary to be encoded.
      * @return string  Returns the bencode encoded dictionary.
      */
-    private function encodeDict(array $data = null)
+    private function encodeDict(array $data = null) : string
     {
         $data = is_null($data) ? $this->data : $data;
         ksort($data); // bencode spec requires dicts to be sorted alphabetically
@@ -142,5 +131,4 @@ class Encoder
 
         return "d{$dict}e";
     }
-
 }

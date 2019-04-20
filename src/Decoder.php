@@ -1,14 +1,4 @@
 <?php
-/**
- * Rych Bencode
- *
- * Bencode serializer for PHP 5.3+.
- *
- * @package   Rych\Bencode
- * @copyright Copyright (c) 2014, Ryan Chouinard
- * @author    Ryan Chouinard <rchouinard@gmail.com>
- * @license   MIT License - http://www.opensource.org/licenses/mit-license.php
- */
 
 namespace Rych\Bencode;
 
@@ -21,7 +11,6 @@ use Rych\Bencode\Exception\RuntimeException;
  */
 class Decoder
 {
-
     /**
      * The encoded source string
      *
@@ -101,7 +90,6 @@ class Decoder
     private function doDecode()
     {
         switch ($this->getChar()) {
-
             case "i":
                 ++$this->offset;
                 return $this->decodeInteger();
@@ -118,7 +106,6 @@ class Decoder
                 if (ctype_digit($this->getChar())) {
                     return $this->decodeString();
                 }
-
         }
 
         throw new RuntimeException("Unknown entity found at offset $this->offset");
@@ -178,7 +165,9 @@ class Decoder
     private function decodeString()
     {
         if ("0" === $this->getChar() && ":" != $this->getChar($this->offset + 1)) {
-            throw new RuntimeException("Illegal zero-padding in string entity length declaration at offset $this->offset");
+            throw new RuntimeException(
+                "Illegal zero-padding in string entity length declaration at offset $this->offset"
+            );
         }
 
         $offsetOfColon = strpos($this->source, ":", $this->offset);
@@ -251,7 +240,7 @@ class Decoder
             }
 
             $key = $this->decodeString();
-            if (isset ($dict[$key])) {
+            if (isset($dict[$key])) {
                 throw new RuntimeException("Duplicate dictionary key at offset $keyOffset");
             }
 
@@ -282,11 +271,10 @@ class Decoder
             $offset = $this->offset;
         }
 
-        if (empty ($this->source) || $this->offset >= $this->sourceLength) {
+        if (empty($this->source) || $this->offset >= $this->sourceLength) {
             return false;
         }
 
         return $this->source[$offset];
     }
-
 }

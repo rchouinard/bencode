@@ -1,14 +1,4 @@
 <?php
-/**
- * Rych Bencode
- *
- * Bencode serializer for PHP 5.3+.
- *
- * @package   Rych\Bencode
- * @copyright Copyright (c) 2014, Ryan Chouinard
- * @author    Ryan Chouinard <rchouinard@gmail.com>
- * @license   MIT License - http://www.opensource.org/licenses/mit-license.php
- */
 
 namespace Rych\Bencode;
 
@@ -20,7 +10,6 @@ use Rych\Bencode\Exception\RuntimeException;
  */
 class DecoderTest extends TestCase
 {
-
     /**
      * Test that strings are properly decoded
      *
@@ -216,5 +205,4 @@ class DecoderTest extends TestCase
         $this->expectException(RuntimeException::class);
         Decoder::decode("3:foo3:bar");
     }
-
 }
